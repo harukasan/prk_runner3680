@@ -84,12 +84,9 @@ kbd.define_mode_key :TOG_WIN, [toggle_win_mode, :KC_NO, 300, nil]
 kbd.define_mode_key :RAISE,       [ :KC_LANG1,            :raise,                       200,              150 ]
 kbd.define_mode_key :LOWER,       [ :KC_LANG2,            :lower,                       200,              150 ]
 kbd.define_mode_key :SPECIAL,     [ :KC_NO,               :special,                     300,              150 ]
-def define_macro_key(key_name, text, opts, threshold)
-  kbd.define_mode_key key_name, [Proc.new { kbd.macro(text, opts) }, :KC_NO, threshold, nil]
-end
-define_macro_key :SEND_00, '00', [], 300
+
+kbd.define_mode_key :SEND_00, [ Proc.new { kbd.macro('00', []) }, :KC_NO, 300, nil ]
 
 kbd.define_composite_key :S_TAB, [:KC_RSFT, :KC_TAB]
 
 kbd.start!
-
